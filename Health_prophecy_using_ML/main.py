@@ -4,6 +4,9 @@ import numpy as np
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import accuracy_score
 
+
+
+
 # Load training data
 df_train = pd.read_csv("Training.csv")
 df_train.replace({'prognosis': {'Fungal infection': 0, 'Allergy': 1, 'GERD': 2, 'Chronic cholestasis': 3, 'Drug Reaction': 4,
@@ -71,16 +74,36 @@ def naive_bayes(X_train, y_train, X_test):
     y_pred = gnb.predict(X_test)
     return y_pred
 
+st.markdown(
+    """
+    <style>
+        body {
+            background-image: url('https://plus.unsplash.com/premium_photo-1683910767532-3a25b821f7ae?q=80&w=2008&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 def main():
     st.title("Health Checkup System")
 
-    symptoms = [st.selectbox(f"Symptom {i}", l1) for i in range(1, 6)]
+    
+
+    symptoms = [st.selectbox(f"Symptom {i}", ['None'] + l1) for i in range(1, 6)]
     predict_button = st.button("Check Now")
 
     if predict_button:
-        l2 = [1 if symptom in symptoms else 0 for symptom in l1]
-        input_test = [l2]
-        predicted = naive_bayes(X_train, y_train, input_test)[0]
+        symptoms_selected = [symptom for symptom in symptoms if symptom != 'None']
+        if not symptoms_selected:
+            st.warning("Please select symptoms.")
+        else:
+            l2 = [1 if symptom in symptoms_selected else 0 for symptom in l1]
+            input_test = [l2]
+            predicted = naive_bayes(X_train, y_train, input_test)[0]
 
         h = 'no'
         for a in range(len(disease)):
@@ -89,9 +112,10 @@ def main():
                 break
 
         if h == 'yes':
-            st.success(f"The predicted disease is: {disease[a]}")
+            st.success(f"This is the disease you have based on the input symptoms: {disease[a]}")
         else:
-            st.warning("No Disease")
+            st.warning("No Disease, you are fit :)")
 
 if __name__ == "__main__":
+
     main()
