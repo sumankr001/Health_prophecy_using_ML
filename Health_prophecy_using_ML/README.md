@@ -1,4 +1,3 @@
-# Diseaseprediction
 
 Health prophecy model
 
