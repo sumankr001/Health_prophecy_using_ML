@@ -3,7 +3,10 @@ import pandas as pd
 import numpy as np
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import accuracy_score
-
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.metrics import accuracy_score
+import pandas as pd
+import numpy as np
 
 
 
