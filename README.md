@@ -10,6 +10,8 @@ In a world where many impoverished individuals struggle to access health facilit
 - **Accurate Predictions**: Harness the power of machine learning with our reliable Random Forest classifier.
 - **Data Integrity Guaranteed**: We ensure data quality by encoding categorical variables and addressing missing values.
 - **Revolutionizing Healthcare**: Move from traditional methods to cutting-edge smart health monitoring.
+- ![The User Interace using streamlit](https://github.com/sumankr001/Health_prophecy_using_ML/blob/main/image%20collections/UI.png)
+
 
 ## 💻 Installation Instructions
 
